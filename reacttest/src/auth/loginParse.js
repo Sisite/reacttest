@@ -1,10 +1,10 @@
 /**
  * Created by Robin on 2017-03-12.
  */
-import loginData from './LoginDrawer';
+//import loginData from './LoginDrawer';
 
-function loginOutput () {
-    loginData.
+//function loginOutput () {
+ //   loginData.
 
-}
+//}
 

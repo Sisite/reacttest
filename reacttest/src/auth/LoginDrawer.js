@@ -1,11 +1,12 @@
 /**
  * Created by Robin on 2017-03-12.
  */
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 //import logo from '../logo.svg';
 import '../App.css';
+import LoginPage from './LoginPage';
 
-class LoginDrawer extends Component {
+class LoginDrawer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +17,7 @@ class LoginDrawer extends Component {
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit(event) {
@@ -25,14 +26,13 @@ class LoginDrawer extends Component {
         // console.log(userName);
         // console.log(passWord);
         event.preventDefault();
-        console.log(this.state.username);
-        console.log(this.state.password);
+        console.log(this.state.user.username);
+        console.log(this.state.user.password);
 
     }
     handleChange(event) {
         const field = event.target.name;
         const user = this.state.user;
-
         user[field] = event.target.value;
 
         this.setState({
@@ -43,14 +43,11 @@ class LoginDrawer extends Component {
 
     render() {
         return (
-            <div className="LoginDrawer">
-                <form onSubmit={this.handleSubmit}>
-                    <p>Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/> </p>
-                    <p>Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/> </p>
-                    <input type="submit" value="Login"/>
-                    <input type="submit" value="Sign-up"/>
-                </form>
-            </div>
+            <LoginPage
+                onSubmit={this.handleSubmit}
+                onChange={this.handleChange}
+                user={this.state.user}
+            />
         );
     }
 }
