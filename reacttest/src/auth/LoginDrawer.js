@@ -9,8 +9,10 @@ class LoginDrawer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username:'',
-            password:''
+            user: {
+                username:'',
+                password:''
+            }
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,27 +20,35 @@ class LoginDrawer extends Component {
     }
 
     handleSubmit(event) {
-        const userName= document.getElementById('username' ).value;
-        const passWord= document.getElementById('password' ).value;
-        console.log(userName);
-        console.log(passWord);
-        // console.log('A name was submitted: ' + this.state.username);
-        // console.log('A password was submitted: ' + this.state.password);
+        // const userName= document.getElementById('username' ).value;
+        // const passWord= document.getElementById('password' ).value;
+        // console.log(userName);
+        // console.log(passWord);
         event.preventDefault();
+        console.log(this.state.username);
+        console.log(this.state.password);
+
     }
     handleChange(event) {
-        //const target = event.target;
-        this.setState({value: event.target.value});
+        const field = event.target.name;
+        const user = this.state.user;
+
+        user[field] = event.target.value;
+
+        this.setState({
+            user
+        })
+        //this.setState({value: event.target.value});
     }
 
     render() {
         return (
             <div className="LoginDrawer">
                 <form onSubmit={this.handleSubmit}>
-                <p>Username: <input type="text" name="username" id="username"/> </p>
-                <p>Password: <input type="password" name="password" id="password"/> </p>
-                <input type="submit" value="Login" onChange={this.handleSubmit}/>
-                <input type="submit" value="Sign-up"/>
+                    <p>Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/> </p>
+                    <p>Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/> </p>
+                    <input type="submit" value="Login"/>
+                    <input type="submit" value="Sign-up"/>
                 </form>
             </div>
         );
